@@ -3,9 +3,16 @@ import { client } from '../../../lib/sanity'
 const createUserInSanity = async (req, res) => {
   try {
     const userDoc = {
-      _type: 'users',
+      _type: 'registereduser',
       _id: req.body.userWalletAddress,
-      name: req.body.name,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      country: req.body.country,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
       walletAddress: req.body.userWalletAddress,
     }
 

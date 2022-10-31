@@ -45,14 +45,14 @@ const Navbar = () => {
             {currentAccount.slice(0, 6)}...{currentAccount.slice(39)}
           </div>
         ) : (
-          <div className={style.loginButton} onClick={() => connectWallet()}>
+          <div className={style.loginButton}>
             <BsPerson />
-            <span className={style.loginText}>Log in</span>
+            <a href="/login" className={style.loginText}>Log in</a>
           </div>
         )}
       </div>
     </div>
   )
-}
+        }
 
 export default Navbar
