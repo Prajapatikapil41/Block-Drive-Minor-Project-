@@ -256,20 +256,18 @@ function signup() {
                         event.preventDefault();
                         alert("Invalid Data! Complete all fields.");
                       } else {
-                        await set(
-                          ref(DB, "blockdrive/" + new Date().getTime()),
-                          {
-                            id: new Date().getTime(),
-                            fName,
-                            lName,
-                            email,
-                            password,
-                            country,
-                            address,
-                            city,
-                            state,
-                          }
-                        );
+                        const id = new Date().getTime();
+                        await set(ref(DB, "users/" + id), {
+                          id,
+                          fName,
+                          lName,
+                          email,
+                          password,
+                          country,
+                          address,
+                          city,
+                          state,
+                        });
                         // await fetch(`${FIREBASE_KEY}blockdrive.json`, {
                         //   ...FIREBASE_SEND_OBJECT,
                         //   body: JSON.stringify({
