@@ -90,7 +90,8 @@ export default function Login() {
                 // href="./"
                 onClick={() => {
                   get(child(ref(DB), `users/`)).then((snapshot) => {
-                    console.log(snapshot.val());
+                    const data = snapshot.val();
+                    console.log(data);
                   });
                   console.log({ email, password });
                   // connectWallet();

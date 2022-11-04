@@ -6,7 +6,7 @@ import { UberContext } from "../context/uberContext";
 
 const style = {
   wrapper: `h-16 w-full bg-black text-white flex md:justify-around items-center px-60 fixed z-20`,
-  leftMenu: `flex gap-3`,
+  leftMenu: `flex`,
   logo: `text-3xl text-white flex cursor-pointer mr-16`,
   menuItem: `text-lg text-white font-medium flex items-center mx-4 cursor-pointer`,
   rightMenu: `flex gap-3 items-center`,
@@ -21,23 +21,20 @@ const Navbar = () => {
     useContext(UberContext);
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.leftMenu}>
-        <div className={style.logo}>Block-Drive</div>
-
-        <a className={style.menuItem} href="Rides">
-          Ride
-        </a>
-        <div className={style.menuItem}>Drive</div>
-        <div className={style.menuItem}>More</div>
+    <div className="row bg-black">
+      <div className="col-sm-3 text-center text-white text-3xl">
+        Block-Drive
       </div>
+
+      <div className="text-center text-white text-xl">History</div>
       <div className={style.rightMenu}>
-        <div className={style.menuItem}>Help</div>
-        {console.log("CURRENT USER", currentUser)}
         {/* <div className={style.menuItem}>{currentUser.name?.split(" ")[0]}</div> */}
-        <div className={style.userImageContainer}>
+        <div
+          className="row justify-content-center"
+          style={{ marginLeft: "45%" }}
+        >
           <Image
-            className={style.userImage}
+            className="rounded-full "
             src={avatar}
             width={40}
             height={40}

@@ -263,6 +263,7 @@ function signup() {
                           lName,
                           email,
                           password,
+                          walletAddress: "",
                           country,
                           address,
                           city,
