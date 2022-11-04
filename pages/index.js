@@ -25,7 +25,8 @@ export default function Home() {
       <div className={style.main}>
         <Map />
       </div>
-      <div className={style.rideRequestContainer}>
+
+      <div style={{ maxHeight: "30rem" }}>
         <div className={style.rideRequest}>
           <LocationSelector />
           <Confirm />

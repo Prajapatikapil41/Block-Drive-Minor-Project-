@@ -2,5 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/signup": "pages/signup.js"
+  "/api/map/getLocationCoordinates": "pages/api/map/getLocationCoordinates.js",
+  "/api/db/getRideTypes": "pages/api/db/getRideTypes.js",
+  "/api/db/saveTrips": "pages/api/db/saveTrips.js",
+  "/api/map/getDuration": "pages/api/map/getDuration.js"
 }
