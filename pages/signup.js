@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FIREBASE_KEY, FIREBASE_SEND_OBJECT } from "../constant";
 
+import { ref, set } from "firebase/database";
+import { DB } from "../constant";
 function signup() {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -255,9 +256,9 @@ function signup() {
                         event.preventDefault();
                         alert("Invalid Data! Complete all fields.");
                       } else {
-                        await fetch(`${FIREBASE_KEY}blockdrive.json`, {
-                          ...FIREBASE_SEND_OBJECT,
-                          body: JSON.stringify({
+                        await set(
+                          ref(DB, "blockdrive/" + new Date().getTime()),
+                          {
                             id: new Date().getTime(),
                             fName,
                             lName,
@@ -267,11 +268,26 @@ function signup() {
                             address,
                             city,
                             state,
-                            pin,
-                          }),
-                        }).then(() => {
-                          router.push("./login");
-                        });
+                          }
+                        );
+                        // await fetch(`${FIREBASE_KEY}blockdrive.json`, {
+                        //   ...FIREBASE_SEND_OBJECT,
+                        //   body: JSON.stringify({
+                        //     id: new Date().getTime(),
+                        //     fName,
+                        //     lName,
+                        //     email,
+                        //     password,
+                        //     country,
+                        //     address,
+                        //     city,
+                        //     state,
+                        //     pin,
+                        //   }),
+                        // }).then(() => {
+                        //   router.push("./login");
+                        // });
+                        router.push("./login");
                       }
                     }}
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
