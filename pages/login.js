@@ -3,33 +3,20 @@ import { ref, child, get } from "firebase/database";
 import { DB } from "../constant";
 import { useContext, useState } from "react";
 import { UberContext } from "../context/uberContext";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const { connectWallet } = useContext(UberContext);
   return (
-    /*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              BlockDrive
+              Block-Drive
             </h2>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
@@ -91,12 +78,29 @@ export default function Login() {
                 onClick={() => {
                   get(child(ref(DB), `users/`)).then((snapshot) => {
                     const data = snapshot.val();
-                    console.log(data);
+                    let fireId, firePass;
+                    if (data) {
+                      for (const item in data) {
+                        if (data[item].email === email) {
+                          firePass = data[item].password;
+                          fireId = data[item].email;
+                        }
+                      }
+                    }
+                    if (fireId && firePass) {
+                      if (fireId === email && firePass === password) {
+                        connectWallet();
+                        router.push("/");
+                      } else {
+                        alert("Wrong Password");
+                      }
+                    } else {
+                      alert("User not registered");
+                    }
                   });
                   console.log({ email, password });
-                  // connectWallet();
                 }}
-                type="submit"
+                // type="submit"
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
