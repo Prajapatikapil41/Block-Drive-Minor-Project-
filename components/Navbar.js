@@ -21,33 +21,25 @@ const Navbar = () => {
     useContext(UberContext);
 
   return (
-    <div className="row bg-black">
-      <div className="col-sm-3 text-center text-white text-3xl">
-        Block-Drive
-      </div>
-
-      <div className="text-center text-white text-xl">History</div>
-      <div className={style.rightMenu}>
-        {/* <div className={style.menuItem}>{currentUser.name?.split(" ")[0]}</div> */}
-        <div
-          className="row justify-content-center"
-          style={{ marginLeft: "45%" }}
-        >
-          <Image
-            className="rounded-full "
-            src={avatar}
-            width={40}
-            height={40}
-          />
-        </div>
+    <div className="bg-black">
+      <div className="row mt-4 ms-sm-3 align-items-center">
+        <h1 className="col-sm-3 text-white text-3xl">Block-Drive</h1>
+        <h1 className="col-sm-3 text-white text-xl">History</h1>
+        {/* <div className={"col-sm-3"}>{currentUser.name?.split(" ")[0]}</div> */}
+        <Image
+          className="rounded-full col-3"
+          src={avatar}
+          width={40}
+          height={40}
+        />
         {currentAccount ? (
-          <div>
+          <div className="col-3 text-white">
             {currentAccount.slice(0, 6)}...{currentAccount.slice(39)}
           </div>
         ) : (
-          <div className={style.loginButton}>
-            <BsPerson />
-            <a href="/login" className={style.loginText}>
+          <div className="col-3">
+            {/* <BsPerson /> */}
+            <a href="/login" className={"text-xl text-white"}>
               Log in
             </a>
           </div>
